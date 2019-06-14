@@ -96,7 +96,9 @@ export default {
     },
     methods: {
         fetchCourse() {
-            axios.get("/middle/courses").then(res => {
+            axios.get("/middle/courses",{
+                params:{number:Cookies.get('number')}
+            }).then(res => {
                 let courses = res.data;
                 for (const c of courses) {
                     this.courses[c.college].push(c);

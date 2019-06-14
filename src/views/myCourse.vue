@@ -78,12 +78,15 @@ export default {
                     course: course
                 })
                 .then(res => {
+                    alert('退课成功')
                     this.myCourses.splice(this.myCourses.indexOf(course),1)
                 });
         }
     },
     created() {
-        axios.get("/middle/courses").then(res => {
+        axios.get("/middle/courses",{
+                params:{number:Cookies.get('number')}
+            }).then(res => {
             let courses = res.data;
             this.myCourses = courses.filter(c => c.isSelected);
         });
